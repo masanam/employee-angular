@@ -1,0 +1,82 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <div *ngIf="currentTutorial" class="edit-form">
+        <h1>Tutorial</h1>
+        <form>
+          <mat-form-field appearance="standard" style="width: 100%;">
+            <mat-label>Title</mat-label>
+            <input
+              type="text"
+              matInput
+              id="title"
+              [(ngModel)]="currentTutorial.title"
+              name="title"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="standard" style="width: 100%">
+            <mat-label>Description</mat-label>
+            <input
+              type="text"
+              matInput
+              id="description"
+              [(ngModel)]="currentTutorial.description"
+              name="description"
+            />
+          </mat-form-field>
+
+
+
+
+          <div class="form-group">
+            <label><strong>Status:</strong></label>
+            {{ currentTutorial.published ? "Published" : "Pending" }}
+          </div>
+        </form>
+
+        <button
+          mat-raised-button
+          color="warn"
+          *ngIf="currentTutorial.published"
+          (click)="updatePublished(false)"
+        >
+          UnPublish
+        </button>
+        <button
+          *ngIf="!currentTutorial.published"
+          mat-raised-button
+          color="accent"
+          (click)="updatePublished(true)"
+        >
+          Publish
+        </button>
+
+        <button mat-raised-button color="warn" (click)="deleteTutorial()" style="margin-left: 1rem; margin-right: 1rem;">
+          Delete
+        </button>
+
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          (click)="updateTutorial()"
+        >
+          Update
+        </button>
+        <p>{{ message }}</p>
+      </div>
+
+      <div *ngIf="!currentTutorial">
+        <br />
+        <p>Cannot access this Tutorial...</p>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+

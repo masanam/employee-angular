@@ -1,0 +1,113 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchTitle()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Employees List</h4>
+      <table>
+        <thead>
+           <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Age</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr
+           *ngFor="let employee of employees; let i = index"
+           [class.active]="i == currentIndex"
+          (click)="setActiveEmployee(employee, i)"
+           >
+              <td>{{ employee.first_name }}</td>
+              <td>{{ employee.last_name }}</td>
+              <td>{{ employee.email }}</td>
+              <td>{{ employee.phone}}</td>
+              <td>{{ employee.age }}</td>
+           </tr>
+        </tbody>
+     </table>
+
+      <!-- <ul class="list-group">
+        <li
+          class="list-group-employee"
+          *ngFor="let employee of employees; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveEmployee(employee, i)"
+        >
+          {{ employee.first_name }}
+          {{ employee.last_name }}
+
+        </li>
+      </ul> -->
+  
+      <button mat-raised-button color="warn">
+        <a style="color: white; text-decoration: none;" routerLink="/add-employee">
+          Add
+        </a>
+      </button>
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllEmployees()">
+        Remove All
+      </button>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentEmployee">
+        <h4>Employee</h4>
+        <div>
+            <label><strong>First Name:</strong></label> {{ currentEmployee.first_name }}
+          </div>
+          <div>
+            <label><strong>Last Name:</strong></label>
+            {{ currentEmployee.last_name }}
+          </div>
+          <div>
+            <label><strong>Email:</strong></label> {{ currentEmployee.email }}
+          </div>
+        <div>
+          <label><strong>Title:</strong></label> {{ currentEmployee.title }}
+        </div>
+        <div>
+          <label><strong>Age:</strong></label>
+          {{ currentEmployee.age }}
+        </div>
+        <div>
+            <label><strong>Phone:</strong></label>
+            {{ currentEmployee.phone }}
+          </div>
+        <div>
+          <label><strong>Status:</strong></label>
+          {{ currentEmployee.published ? "Published" : "Pending" }}
+        </div>
+  
+        <button mat-raised-button color="warn">
+          <a style="color: white; text-decoration: none;" routerLink="/employees/{{ currentEmployee.id }}">
+            Edit
+          </a>
+        </button>
+  
+      </div>
+  
+      <div *ngIf="!currentEmployee">
+        <br />
+        <p>Please click on a Employee...</p>
+      </div>
+    </div>
+  </div>
+  

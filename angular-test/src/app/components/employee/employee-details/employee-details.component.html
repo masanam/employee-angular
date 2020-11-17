@@ -1,0 +1,126 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+  
+        <div *ngIf="currentEmployee" class="edit-form">
+          <h1>Employee</h1>
+          <form>
+            <mat-form-field appearance="standard" style="width: 100%;">
+                <mat-label>First Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  id="first_name"
+                  [(ngModel)]="currentEmployee.first_name"
+                  name="first_name"
+                />
+              </mat-form-field>
+    
+              <mat-form-field appearance="standard" style="width: 100%">
+                <mat-label>Last Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  id="last_name"
+                  [(ngModel)]="currentEmployee.last_name"
+                  name="last_name"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="standard" style="width: 100%">
+                <mat-label>Age</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  id="age"
+                  [(ngModel)]="currentEmployee.age"
+                  name="age"
+                />
+              </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 100%;">
+              <mat-label>Email</mat-label>
+              <input
+                type="text"
+                matInput
+                id="email"
+                [(ngModel)]="currentEmployee.email"
+                name="email"
+              />
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="standard" style="width: 100%;">
+              <mat-label>Title</mat-label>
+              <input
+                type="text"
+                matInput
+                id="title"
+                [(ngModel)]="currentEmployee.title"
+                name="title"
+              />
+            </mat-form-field>
+  
+            <mat-form-field appearance="standard" style="width: 100%;">
+                <mat-label>Phone</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  id="phone"
+                  [(ngModel)]="currentEmployee.phone"
+                  name="phone"
+                />
+              </mat-form-field>
+
+            <div class="form-group">
+              <label><strong>Status:</strong></label>
+              {{ currentEmployee.published ? "Published" : "Pending" }}
+            </div>
+          </form>
+  
+          <button
+            mat-raised-button
+            color="warn"
+            *ngIf="currentEmployee.published"
+            (click)="updatePublished(false)"
+          >
+            UnPublish
+          </button>
+          <button
+            *ngIf="!currentEmployee.published"
+            mat-raised-button
+            color="accent"
+            (click)="updatePublished(true)"
+          >
+            Publish
+          </button>
+  
+          <button mat-raised-button color="warn" (click)="deleteEmployee()" style="margin-left: 1rem; margin-right: 1rem;">
+            Delete
+          </button>
+  
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            (click)="updateEmployee()"
+          >
+            Update
+          </button>
+          <p>{{ message }}</p>
+        </div>
+  
+        <div *ngIf="!currentEmployee">
+          <br />
+          <p>Cannot access this Employee...</p>
+        </div>
+  
+  
+  
+      </div>
+    </div>
+  </div>
+  
+  
