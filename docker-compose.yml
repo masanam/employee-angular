@@ -14,7 +14,7 @@ services:
     links:
       - mongo # link this service to the database service  database: # name of the third service
     build: database # specify the directory of the Dockerfile
-    container_name: database-container
-    restart: always
+    container_name: mongo
+    image: mongo
     ports:
       - "27018:27017" # specify port forewarding
